@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="POST">
+	{% csrf_token %}
+		{% for field in book_form %}
+		    <div class="fieldWrapper">
+		        {{ field.errors }}
+		        {{ field.label_tag }} 
+		        {{ field }}
+		        {% if field.help_text %}
+		        	<p class="help">{{ field.help_text|safe }}</p>
+		        {% endif %}
+		    </div>
+		{% endfor %}
+		{% if book_form.instance %}
+			<input type="submit" value="Cadastrar">
+		{% else %}
+			<input type="submit" value="Alterar">
+		{% endif %}
+		<h1>
+			{{ book_form.initial }}
+		</h1>
+	</form>
+{% endblock %}
