@@ -8,9 +8,13 @@
 	    	{{ book.title }}
 	    	<a href="{% url 'book:detail' book.id %}">Visualizar</a>
 	    	<a href="{% url 'book:update' book.id %}">Editar</a>
-	    	<a href="/">Excluir</a>
+	    	<form action="{% url 'book:delete' book.id %}" method="POST">
+	    	{% csrf_token %}
+			    <input type="submit" value="Excluir"> 
+			</form>
 	    </li>
 	{% endfor %}
 	</ul>
 	<a href="{% url 'book:create' %}">Novo livro</a>
 {% endblock %}
+

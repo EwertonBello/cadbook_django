@@ -39,11 +39,11 @@ def book_update(request, book_id):
     return render(request, 'book/book_form.html', {'book_form':form, 'btn_submit': 'Alterar'})
 
 def book_delete(request, book_id):
-    pass
-    # book_id = int(book_id)
-    # try:
-    #     book_sel = Book.objects.get(id = book_id)
-    # except Book.DoesNotExist:
-    #     return redirect('book:list')
-    # book_sel.delete()
-    # return redirect('book:list')
+    if request.method == 'POST':
+        book_id = int(book_id)
+        try:
+            book = Book.objects.get(id = book_id)
+        except Book.DoesNotExist:
+            return redirect('book:list')
+        book.delete()
+    return redirect('book:list')
