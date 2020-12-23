@@ -5,8 +5,8 @@ from . import views
 app_name = "book"
 
 urlpatterns = [
-	path("", views.book_list, name="list"),
-	path("create/", views.book_create, name="create"),
-	path("update/<int:book_id>/", views.book_update, name="update"),
+	path("books/", views.book_list, name="list"),
+	path("books/create/", views.book_create, name="create"),
+	path("books/update/<int:book_id>/", views.book_update, name="update"),
 	# path("<slug:slug>/", views.PostDetailView.as_view(), name="detail")
 ]
