@@ -4,7 +4,11 @@
 	<h1>Sem Pressão</h1>
 	<ul>
 	{% for book in books %}
-	    <li>{{ book.title }}</li>
+	    <li>
+	    	{{ book.title }}
+	    	<a href="{% url 'book:update' book.id %}">Editar</a>
+	    	<a href="/">Excluir</a>
+	    </li>
 	{% endfor %}
 	</ul>
 	<a href="{% url 'book:create' %}">Novo livro</a>
