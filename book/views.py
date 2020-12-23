@@ -6,6 +6,14 @@ def book_list(request):
     books = Book.objects.all()
     return render(request, 'book/book_list.html', {'books': books})
 
+def book_detail(request, book_id):
+    book_id = int(book_id)
+    try:
+        book = Book.objects.get(id = book_id)
+    except Book.DoesNotExist:
+        return redirect('book:list')
+    return render(request, 'book/book_detail.html', {'book': book})
+
 def book_create(request):
     form = BookForm()
     if request.method == 'POST':

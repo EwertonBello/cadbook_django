@@ -6,6 +6,7 @@
 	{% for book in books %}
 	    <li>
 	    	{{ book.title }}
+	    	<a href="{% url 'book:detail' book.id %}">Visualizar</a>
 	    	<a href="{% url 'book:update' book.id %}">Editar</a>
 	    	<a href="/">Excluir</a>
 	    </li>
