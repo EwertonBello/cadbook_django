@@ -2,9 +2,23 @@ from django.shortcuts import render, redirect
 from .forms import BookForm
 from .models import Book
 
+def book_dashboard(request):
+    books = Book.objects.all()
+    return render(request, 'book/book_dashboard.html', 
+        {
+        'books': books, 
+        'current_path': request.get_full_path()
+        }
+    )
+
 def book_list(request):
     books = Book.objects.all()
-    return render(request, 'book/book_list.html', {'books': books})
+    return render(request, 'book/book_list.html', 
+        {
+        'books': books, 
+        'current_path': request.get_full_path()
+        }
+    )
 
 def book_detail(request, book_id):
     book_id = int(book_id)
