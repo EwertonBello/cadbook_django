@@ -2,9 +2,23 @@ from django.shortcuts import render, redirect
 from .forms import BookForm
 from .models import Book
 
+def book_dashboard(request):
+    books = Book.objects.all()
+    return render(request, 'book/book_dashboard.html', 
+        {
+        'books': books, 
+        'current_path': request.get_full_path()
+        }
+    )
+
 def book_list(request):
     books = Book.objects.all()
-    return render(request, 'book/book_list.html', {'books': books})
+    return render(request, 'book/book_list.html', 
+        {
+        'books': books, 
+        'current_path': request.get_full_path()
+        }
+    )
 
 def book_detail(request, book_id):
     book_id = int(book_id)
@@ -36,7 +50,7 @@ def book_update(request, book_id):
     if form.is_valid():
        form.save()
        return redirect('book:list')
-    return render(request, 'book/book_form.html', {'book_form':form, 'btn_submit': 'Alterar'})
+    return render(request, 'book/book_form.html', {'book_form':form, 'btn_submit': 'Editar'})
 
 def book_delete(request, book_id):
     if request.method == 'POST':
