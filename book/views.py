@@ -50,7 +50,7 @@ def book_update(request, book_id):
     if form.is_valid():
        form.save()
        return redirect('book:list')
-    return render(request, 'book/book_form.html', {'book_form':form, 'btn_submit': 'Alterar'})
+    return render(request, 'book/book_form.html', {'book_form':form, 'btn_submit': 'Editar'})
 
 def book_delete(request, book_id):
     if request.method == 'POST':
