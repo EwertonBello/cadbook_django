@@ -10,9 +10,9 @@ class BookForm(forms.ModelForm):
 			'pages',
 			'price',
 		]
-		labels = {
-			'title': 'Título',
-			'user': 'Autor',
-			'pages': 'Páginas',
-			'price': 'Preço',
-		}
+		widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título'}),
+            'user': forms.Select(attrs={'class': 'form-control'}),
+            'pages': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Páginas'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Preço'}),
+        }
