@@ -5,20 +5,67 @@ Lista de Livros
 {% endblock %}
 
 {% block content %}
-	<h1>Sem Pressão</h1>
-	<ul>
-	{% for book in books %}
-	    <li>
-	    	{{ book.title }}
-	    	<a href="{% url 'book:detail' book.id %}">Visualizar</a>
-	    	<a href="{% url 'book:update' book.id %}">Editar</a>
-	    	<form action="{% url 'book:delete' book.id %}" method="POST">
-	    	{% csrf_token %}
-			    <input type="submit" value="Excluir"> 
-			</form>
-	    </li>
-	{% endfor %}
-	</ul>
-	<a href="{% url 'book:create' %}">Novo livro</a>
+    <div class="col-md-8 m-auto">
+
+        <!-- will be used to show any messages -->
+        <!-- fica aqui um alerta de que foi cadastrado com sucesso -->
+
+
+        <div class="text-left">
+            <a href="{% url 'book:create' %}">
+                <button class="btn btn-success mt-2 mb-3">
+                    <i class="fas fa-plus"></i>
+                    Cadastrar
+                </button>
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            {% csrf_token %}
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tfoot class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                {% for book in books %}
+				    <tr>
+				    	<th scope="row">{{ book.id }}</th>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.user.name }}</td>
+                        <td>{{ book.price }}</td>
+
+                        <td class="d-flex justify-content-center">
+                            <a href="{% url 'book:detail' book.id %}">
+                                <button class="btn btn-dark ml-1">Visualizar</button>
+                            </a>
+                            <a href="{% url 'book:update' book.id %}">
+                                <button class="btn btn-primary ml-1">Editar</button>
+                            </a>
+                            <a href="{% url 'book:delete' book.id %}" class="deleteBook" data-id="{{ book.id }}">
+                                <button class="btn btn-danger ml-1">Excluir</button>
+                            </a>
+                        </td>
+
+				    </tr>
+				{% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
 

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .forms import BookForm
 from .models import Book
 
@@ -60,4 +61,4 @@ def book_delete(request, book_id):
         except Book.DoesNotExist:
             return redirect('book:list')
         book.delete()
-    return redirect('book:list')
+    return JsonResponse({'message': "Exclusão bem sucedida!"})
