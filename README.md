@@ -2,4 +2,4 @@
 
 Sistema de cadastro de títulos imaginários, feito utilizando o framework Django.
 
-[v1.8.0]
+[v1.9.0]
