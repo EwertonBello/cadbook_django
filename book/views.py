@@ -1,13 +1,21 @@
+from django.db.models import Sum
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .forms import BookForm
 from .models import Book
+from django.contrib.auth.models import User
 
 def book_dashboard(request):
     books = Book.objects.all()
+    widget = {
+        'books': Book.objects.count(),
+        'total_price': Book.objects.aggregate(total_price=Sum('price'))['total_price'],
+        'users': User.objects.count(),
+        'total_pages': Book.objects.aggregate(total_pages=Sum('pages'))['total_pages']
+    }
     return render(request, 'book/book_dashboard.html', 
         {
-        'books': books, 
+        'widget': widget, 
         'current_path': request.get_full_path()
         }
     )
