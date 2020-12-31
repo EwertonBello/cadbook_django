@@ -6,9 +6,6 @@
 
 {% block content %}
     <div class="col-8 m-auto">
-        <!-- mensagem de erro aqui -->
-
-
         <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         	{% for field in book_form %}
