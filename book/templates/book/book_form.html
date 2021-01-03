@@ -5,18 +5,21 @@
 {% endblock %}
 
 {% block content %}
-	<form method="POST" enctype="multipart/form-data">
-	{% csrf_token %}
-		{% for field in book_form %}
-		    <div class="fieldWrapper">
-		        {{ field.errors }}
-		        {{ field.label_tag }} 
-		        {{ field }}
-		        {% if field.help_text %}
-		        	<p class="help">{{ field.help_text|safe }}</p>
-		        {% endif %}
-		    </div>
-		{% endfor %}
-		<input type="submit" value="{{ btn_submit }}">
-	</form>
+    <div class="col-8 m-auto">
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        	{% for field in book_form %}
+			    <div class="form-group">
+			        {{ field.errors }}
+			        {{ field }}
+			        {% if field.help_text %}
+			        	<p class="help">{{ field.help_text|safe }}</p>
+			        {% endif %}
+			    </div>
+			{% endfor %}
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="{{ btn_submit }}">
+            </div>
+        </form>
+    </div>
 {% endblock %}
