@@ -1,5 +1,12 @@
-# CadBook Versão Django
+# CadBook - Django
 
-Sistema de cadastro de títulos imaginários, feito utilizando o framework Django.
+## Demo
 
-[v1.12.0]
+The app is running in (https://cadbook-django.herokuapp.com/).
+
+## API
+
+### - Endpoints:  
+
+[GET] Books: (https://cadbook-django.herokuapp.com/api/v1/books/).  
+[GET] Book: (https://cadbook-django.herokuapp.com/api/v1/books/{ID}). 
