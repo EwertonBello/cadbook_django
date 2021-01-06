@@ -48,10 +48,7 @@ def book_create(request):
             form.save()
             messages.success(request, "Livro cadastrado com sucesso!" )
             return redirect('book:list')
-        else:
-            return HttpResponse("""your form is wrong, reload on <a href = "{{ url : 'book:list'}}">reload</a>""")
-    else:
-        return render(request, 'book/book_form.html', {'book_form':form, 'btn_submit': 'Cadastrar'})
+    return render(request, 'book/book_form.html', {'book_form':form, 'btn_submit': 'Cadastrar'})
 
 def book_update(request, book_id):
     book_id = int(book_id)
