@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'book',
+    'users',
     # import apps
     'rest_framework',
 ]
@@ -144,3 +145,7 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+# User Model
+
+AUTH_USER_MODEL = "users.User"
