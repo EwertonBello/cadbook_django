@@ -2,7 +2,7 @@ from django.db.models import Sum
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib import messages
-from django.contrib.auth.models import User
+from users.models import User
 
 from .forms import BookForm
 from .models import Book
