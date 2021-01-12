@@ -23,3 +23,15 @@ class TestDashboardView:
 
     def test_template(self, dashboard_response):
         assertTemplateUsed(dashboard_response, "book/book_dashboard.html")
+
+
+class TestListView:
+    def test_reverse_resolve(self):
+        assert reverse("book:list") == "/books/"
+        assert resolve("/books/").view_name == "book:list"
+
+    def test_status_code(self, list_response):
+        assert list_response.status_code == 200
+
+    def test_template(self, list_response):
+        assertTemplateUsed(list_response, "book/book_list.html")
