@@ -8,6 +8,10 @@ pytestmark = pytest.mark.django_db
 def dashboard_response(client):
     return client.get(reverse("book:dashboard"))
 
+@pytest.fixture
+def list_response(client):
+    return client.get(reverse("book:list"))
+
 
 class TestDashboardView:
     def test_reverse_resolve(self):
