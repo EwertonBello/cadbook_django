@@ -16,6 +16,10 @@ def list_response(client):
 def detail_response(client, book):
     return client.get(reverse("book:detail", kwargs={"book_id": book.id}))
 
+@pytest.fixture
+def create_response(client):
+    return client.get(reverse("book:create"))
+
 
 class TestDashboardView:
     def test_reverse_resolve(self):
@@ -51,3 +55,15 @@ class TestDetailView:
 
     def test_template(self, detail_response):
         assertTemplateUsed(detail_response, "book/book_detail.html")
+
+
+class TestCreateView:
+    def test_reverse_resolve(self):
+        assert reverse("book:create") == "/books/create/"
+        assert resolve("/books/create/").view_name == "book:create"
+
+    def test_status_code(self, create_response):
+        assert create_response.status_code == 200
+
+    def test_template(self, create_response):
+        assertTemplateUsed(create_response, "book/book_form.html")
