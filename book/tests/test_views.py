@@ -12,6 +12,10 @@ def dashboard_response(client):
 def list_response(client):
     return client.get(reverse("book:list"))
 
+@pytest.fixture
+def detail_response(client, book):
+    return client.get(reverse("book:detail", kwargs={"book_id": book.id}))
+
 
 class TestDashboardView:
     def test_reverse_resolve(self):
@@ -35,3 +39,15 @@ class TestListView:
 
     def test_template(self, list_response):
         assertTemplateUsed(list_response, "book/book_list.html")
+
+
+class TestDetailView:
+    def test_reverse_resolve(self, book):
+        assert reverse("book:detail", kwargs={"book_id": book.id}) == f"/books/{book.id}/"
+        assert resolve(f"/books/{book.id}/").view_name == "book:detail"
+
+    def test_status_code(self, detail_response):
+        assert detail_response.status_code == 200
+
+    def test_template(self, detail_response):
+        assertTemplateUsed(detail_response, "book/book_detail.html")
