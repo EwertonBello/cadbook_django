@@ -49,7 +49,7 @@ Lista de Livros
                         <td>{{ book.price }}</td>
 
                         <td class="d-flex justify-content-center">
-                            <a href="{% url 'book:detail' book.id %}">
+                            <a href="{{ book.get_absolute_url }}">
                                 <button class="btn btn-dark ml-1">Visualizar</button>
                             </a>
                             <a href="{% url 'book:update' book.id %}">
