@@ -1,5 +1,4 @@
 import pytest
-from pytest_django.asserts import assertQuerysetEqual
 
 from ..models import Book
 
